@@ -9,8 +9,7 @@ if ($_POST){
 
     $sql = "UPDATE staff 
             SET stf_code = ?, 
-            stf_name = ?
-                
+            stf_name = ?                
             WHERE id = ?";
     $stmt = $mysqli->prepare($sql);
     $stmt->bind_param("ssi",$stf_code,$stf_name,$id);
@@ -34,16 +33,16 @@ if ($_POST){
 <html lang="en">
 
 <head>
-    <title>แก้ไขคำสั่งบุคลากร</title>
+    <title>EDIT STAFF</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 
-<body>
-    <div class="container">
+<body style="background-color:#483D8B">
+    <div class="container"style='color:#EEDD82;'>
         <h1>แก้ไขคำสั่งบุคลากร</h1>
         <form action="editstaff.php" method="post">
             <div class="form-group">
@@ -54,7 +53,9 @@ if ($_POST){
                 <label for="stf_name">ชื่อ-นามสกุล</label>
                 <input type="text" class="form-control" name="stf_name" id="stf_name" value="<?php echo $row->stf_name;?>">
             </div>
+            <br>
             <input type="hidden" name="id" value="<?php echo $row->id;?>">
+            <button type="button" class="btn btn-warning" onclick="history.back();">Back</button>
             <button type="submit" class="btn btn-success">Update</button>
         </form>
 </body>

@@ -6,6 +6,15 @@ if ($_POST){
     
     $id = $_POST['id'];
 
+
+    $sql = "DELETE 
+            FROM doc_staff
+            WHERE doc_staff.doc_id = ?";
+    $stmt = $mysqli->prepare($sql);
+    $stmt->bind_param("i", $id);
+    $stmt->execute();
+
+
     
     $sql = "DELETE 
             FROM documents 
@@ -34,18 +43,18 @@ if ($_POST){
 <html lang="en">
 
 <head>
-    <title>ลบข้อมูลคำสั่งแต่งตั้ง</title>
+    <title>DELETE DOCUMENT</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 
-<body>
+<body style="background-color:#483D8B">
     <div class="container">
-        <h1>ลบข้อมูลคำสั่งแต่งตั้ง</h1>
-        <table class="table table-hover">
+        <h1 style='color:#EEDD82'>ลบข้อมูลคำสั่งแต่งตั้ง</h1>
+        <table class="table table-hover" style='color:#EEDD82'>
             <tr>
                 <th style='width:120px'>เลขที่คำสั่ง</th>
                 <td><?php echo $row->doc_num;?></td>
@@ -73,8 +82,8 @@ if ($_POST){
         </table>
         <form action="deletedocument.php" method="post">
             <input type="hidden" name="id" value="<?php echo $row->id;?>">
-            <input type="submit" value="Confirm delete" class="btn btn-danger">
             <button type="button" class="btn btn-warning" onClick="window.history.back()">Cancel Delete</button>
+            <input type="submit" value="Confirm delete" class="btn btn-danger">
         </form>
 </body>
 
